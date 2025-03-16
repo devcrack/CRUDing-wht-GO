@@ -3,6 +3,7 @@ package handlers
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 	"time"
 )
@@ -26,6 +27,7 @@ func HelloHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	// Escribe el texto "Hello, World!" en la respuesta
+	log.Println("Hola mundo desde simple get")
 	fmt.Fprintf(w, "Hello Mundo")
 }
 
