@@ -16,6 +16,7 @@ func main() {
 	http.HandleFunc("/hello/json", handlers.HelloJSONHandler)
 	http.HandleFunc("/echo", handlers.EchoHandler)
 	http.HandleFunc("/listUsersExample", handlers.ListUsersHandler)
+	http.HandleFunc("/ListAllCalculations", handlers.ListAllCalculations)
 
 	port := ":8080"
 	server := &http.Server{
