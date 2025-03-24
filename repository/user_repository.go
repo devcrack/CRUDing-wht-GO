@@ -7,7 +7,7 @@ import (
 func (r *Repository) ListAllUsers() ([]models.User, error) {
 	query := "SELECT pk_int_user, var_user, var_email_user FROM users"
 
-	rows, err := r.rawSql.Query(query)
+	rows, err := r.RawSql.Query(query)
 	if err != nil {
 		return nil, err
 	}
