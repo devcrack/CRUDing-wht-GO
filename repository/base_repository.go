@@ -3,11 +3,12 @@ package repository
 import (
 	"database/sql"
 	"fmt"
+	"os"
+	"time"
+
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
-	"os"
-	"time"
 )
 
 type DBConnection struct {
@@ -19,8 +20,8 @@ type DBConnection struct {
 }
 
 type Repository struct {
-	orm    *gorm.DB
-	rawSql *sql.DB
+	Orm    *gorm.DB
+	RawSql *sql.DB
 }
 
 func NewRepo() (*Repository, error) {
@@ -81,7 +82,7 @@ func NewRepo() (*Repository, error) {
 	// Return a repository instance with both connections (GORM and raw sql)
 	// nil There are no errors.
 	return &Repository{
-		orm:    dbOrm,
-		rawSql: dbRaw,
+		Orm:    dbOrm,
+		RawSql: dbRaw,
 	}, nil
 }
