@@ -6,6 +6,7 @@ import (
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
+	"os"
 	"time"
 )
 
@@ -23,12 +24,17 @@ type Repository struct {
 }
 
 func NewRepo() (*Repository, error) {
+	host := os.Getenv("DB_HOST")
+	user := os.Getenv("DB_USER")
+	password := os.Getenv("DB_PASSWORD")
+	dbName := os.Getenv("DB_NAME")
+
 	config := DBConnection{
-		Host:     "localhost",
+		Host:     host,
 		Port:     5432,
-		User:     "tenma",
-		Password: "mientras123",
-		DBName:   "preprod",
+		User:     user,
+		Password: password,
+		DBName:   dbName,
 	}
 	// Recieve a structure with the connection parameters
 	// Return a pointer and an error
