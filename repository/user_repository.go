@@ -1,16 +1,15 @@
 package repository
 
 import (
-	"log"
 	"payroll_calculator/models"
 )
 
-func (r *Repository) ListAllUsers() {
-	query := "SELECT * FROM users"
+func (r *Repository) ListAllUsers() ([]models.User, error) {
+	query := "SELECT pk_int_user, var_user, var_email_user FROM users"
 
 	rows, err := r.rawSql.Query(query)
 	if err != nil {
-		log.Fatal(err)
+		return nil, err
 	}
 
 	// Es una palabra clave en Go que se utiliza para posponer la ejecución de
@@ -27,11 +26,13 @@ func (r *Repository) ListAllUsers() {
 	for rows.Next() {
 		var user models.User
 
-		err := rows.Scan(&user.Id, &user.Name, &user.Email)
-		if err != nil {
-			log.Fatal(err)
+		nwErr := rows.Scan(&user.Id, &user.Name, &user.Email)
+
+		if nwErr != nil {
+			return nil, nwErr
 		}
 		users = append(users, user)
 	}
 
+	return users, nil
 }
