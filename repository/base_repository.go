@@ -22,7 +22,14 @@ type Repository struct {
 	rawSql *sql.DB
 }
 
-func NewRepo(config DBConnection) (*Repository, error) {
+func NewRepo() (*Repository, error) {
+	config := DBConnection{
+		Host:     "localhost",
+		Port:     5432,
+		User:     "tenma",
+		Password: "mientras123",
+		DBName:   "preprod",
+	}
 	// Recieve a structure with the connection parameters
 	// Return a pointer and an error
 
